@@ -5,11 +5,17 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAuthRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
+    public function user()
+    {
+        return Auth::user();
+    }
+
     public function login(StoreAuthRequest $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -24,9 +30,14 @@ class AuthController extends Controller
             'token' => $user->createToken($request->email)->plainTextToken,
         ]);
     }
+    public function logout(Request $request)
+    {
 
+    }
     public function register(Request $request)
     {
 
     }
+
+
 }

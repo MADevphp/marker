@@ -16,7 +16,10 @@ class StockResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        $result = ['quantity' => $this->quantity];
+        $result = [
+            'stock_id' => $this->id,
+            'quantity' => $this->quantity
+        ];
 
         return $this->getAttributes($result);
     }
