@@ -8,58 +8,28 @@ use App\Http\Requests\UpdateDeliveryMedhodRequest;
 
 class DeliveryMethodController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return DeliveryMethod::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreDeliveryMethodRequest $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(DeliveryMethod $deliveryMedhod)
+    public function show(DeliveryMethod $deliveryMethod)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(DeliveryMethod $deliveryMedhod)
+
+    public function update(UpdateDeliveryMedhodRequest $request, DeliveryMethod $deliveryMethod)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateDeliveryMedhodRequest $request, DeliveryMethod $deliveryMedhod)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(DeliveryMethod $deliveryMedhod)
+    public function destroy(DeliveryMethod $deliveryMethod)
     {
         //
     }

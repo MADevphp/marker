@@ -2,21 +2,31 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DeliveryMethodController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryProductController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\UserAddressController;
+use App\Http\Controllers\UserPaymentCardsController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-Route::get('user', [AuthController::class, 'user'])->middleware('auth:sanctum');
-Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
-Route::apiResource('favorites', FavoritesController::class)->middleware('auth:sanctum');
+Route::get('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::apiResources([
-    'categories.products' => CategoryProductController::class,
-    'categories' => CategoryController::class,
-    'products' => ProductController::class,
-]);
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResources([
+        'categories.products' => CategoryProductController::class,
+        'user-payment-cards' => UserPaymentCardsController::class,
+        'delivery_methods' => DeliveryMethodController::class,
+        'user-addresses' => UserAddressController::class,
+        'payment_types' => PaymentTypeController::class,
+        'categories' => CategoryController::class,
+        'favorites' => FavoritesController::class,
+        'products' => ProductController::class,
+        'orders' => OrderController::class,
+        'user' => AuthController::class,
+    ]);
+});
