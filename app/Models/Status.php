@@ -5,18 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Translatable\HasTranslations;
 
-class PaymentType extends Model
+class Status extends Model
 {
-    use HasFactory, HasTranslations, SoftDeletes;
+    use HasFactory, HasTranslations;
 
-    protected $fillable = ['name'];
+    protected $table = 'statuses';
+    protected $fillable = ['name', 'code', 'for'];
+    public $translatable = ['name', 'code', 'for'];
 
-    public $translatable = ['name'];
-
-    public function orders():HasMany
+    public function orders(): HasMany
     {
         return $this->hasMany(Order::class);
     }

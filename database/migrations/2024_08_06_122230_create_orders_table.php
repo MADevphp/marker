@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('delivery_method_id')->nullable()->constrained('delivery_methods');
             $table->foreignId('payment_type_id')->constrained('payment_types');
             $table->unsignedBigInteger('sum');
+            $table->foreignId('status_id')->default(1)->constrained()->cascadeOnDelete();
             $table->json('address')->nullable();
             $table->json('products');
             $table->timestamps();

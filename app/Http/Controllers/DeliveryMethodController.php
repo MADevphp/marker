@@ -18,11 +18,6 @@ class DeliveryMethodController extends Controller
         //
     }
 
-    public function show(DeliveryMethod $deliveryMethod)
-    {
-        //
-    }
-
 
     public function update(UpdateDeliveryMedhodRequest $request, DeliveryMethod $deliveryMethod)
     {
