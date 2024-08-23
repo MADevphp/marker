@@ -10,18 +10,22 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Models\UserAddress;
-use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        $order = Order::all();
+        if (request()->has('status_id')) {
+            return $this->response(OrderResource::collection(
+                auth()->user()->orders()->where('status_id', request('status_id'))->paginate(5)
+            ));
+        }
 
-        return $this->response(OrderResource::collection(auth()->user()->orders()));
+        return $this->response(OrderResource::collection(auth()->user()->orders()->paginate(10)));
     }
 
-    public function store(StoreOrderRequest $request)
+    public function store(StoreOrderRequest $request): JsonResponse
     {
         $sum = 0;
         $products = [];
@@ -72,15 +76,15 @@ class OrderController extends Controller
                 }
             }
 
-            return $this->success('order created', [$order]);
+            return $this->success('order created', $order);
         } else {
             return $this->error("bu maxsulotdan qolmagan", $notFoUndProducts);
         }
     }
 
-    public function show(Order $order)
+    public function show(Order $order): JsonResponse
     {
-        return $order;
+        return $this->response(new OrderResource($order));
     }
 
 

@@ -5,22 +5,21 @@ namespace App\Http\Controllers;
 use App\Models\UserAddress;
 use App\Http\Requests\StoreUserAddressRequest;
 use App\Http\Requests\UpdateUserAddressRequest;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Collection;
 
 class UserAddressController extends Controller
 {
-    public function index(): Collection
+    public function index(): JsonResponse
     {
-        return auth()->user()->addresses;
+        return $this->response(auth()->user()->addresses);
     }
 
     public function store(StoreUserAddressRequest $request)
     {
-        auth()->user()->addresses()->create($request->toArray());
+        $address = auth()->user()->addresses()->create($request->toArray());
 
-        return response()->json([
-            'success' => true
-        ]);
+        return $this->success('shipping address created.', $address);
     }
 
     public function show(UserAddress $userAddress)

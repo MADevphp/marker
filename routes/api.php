@@ -9,15 +9,20 @@ use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductReviewController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\StatusOrderController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserPaymentCardsController;
+use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
-Route::get('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
+Route::post('change-password', [AuthController::class, 'changePassword'])->middleware('auth:sanctum');
+Route::get('user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResources([
@@ -27,13 +32,14 @@ Route::middleware('auth:sanctum')->group(function () {
         'statuses' => StatusController::class,
         'statuses.orders' => StatusOrderController::class,
         'user-addresses' => UserAddressController::class,
-        'reviews' => ProductReviewController::class,
+        'reviews' => ReviewController::class,
         'products.reviews' => ProductReviewController::class,
         'payment_types' => PaymentTypeController::class,
         'categories' => CategoryController::class,
         'favorites' => FavoritesController::class,
         'products' => ProductController::class,
+        'settings' => SettingController::class,
         'orders' => OrderController::class,
-        'user' => AuthController::class,
+        'user-settings' => UserSettingController::class,
     ]);
 });

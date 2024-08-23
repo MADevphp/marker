@@ -16,7 +16,7 @@ abstract class Controller
             'data' => $data
         ]);
     }
-    public function success(string $message, array $data = null): JsonResponse
+    public function success(string $message = null, $data = null): JsonResponse
     {
         return response()->json([
             'success' => true,
@@ -25,7 +25,7 @@ abstract class Controller
             'data' => $data
         ]);
     }
-    public function error(string $message, array $data = null): JsonResponse
+    public function error(string $message, $data = null): JsonResponse
     {
         return response()->json([
             'success' => false,

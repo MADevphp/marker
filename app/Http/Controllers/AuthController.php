@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAuthRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -12,11 +13,6 @@ use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function index(Request $request)
-    {
-        return new UserResource($request->user());
-    }
-
     public function login(StoreAuthRequest $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -27,7 +23,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return  response()->json([
+        return $this->success(data:[
             'token' => $user->createToken($request->email)->plainTextToken,
         ]);
     }
@@ -40,5 +36,13 @@ class AuthController extends Controller
 
     }
 
+    public function changePassword(Request $request)
+    {
 
+    }
+
+    public function user(): JsonResponse
+    {
+        return $this->response(new UserResource($request->user()));
+    }
 }

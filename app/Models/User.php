@@ -68,6 +68,11 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
 
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
     public function hasFavorite($favorite_id): bool
     {
         return $this->favorites()->where('product_id', $favorite_id)->exists();
@@ -76,5 +81,10 @@ class User extends Authenticatable
     public function rating(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function settings(): HasMany
+    {
+        return $this->hasMany(UserSetting::class, 'user_id', 'id');
     }
 }

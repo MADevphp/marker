@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Attribute;
 use App\Models\Value;
 use Illuminate\Database\Seeder;
 
@@ -12,8 +13,9 @@ class ValueSeeder extends Seeder
      */
     public function run(): void
     {
-        Value::create([
-            'attribute_id' => 1,
+        $attribute = Attribute::find(1);
+
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'Qora',
                 'en' => 'Black',
@@ -21,16 +23,15 @@ class ValueSeeder extends Seeder
             ],
         ]);
 
-        Value::create([
-            'attribute_id' => 1,
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'Sariq',
                 'en' => 'Yellow',
                 'ru' => 'Желтый'
             ]
         ]);
-        Value::create([
-            'attribute_id' => 1,
+
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'qizil',
                 'en' => 'red',
@@ -38,8 +39,9 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([
-            'attribute_id' => 1,
+        $attribute = Attribute::find(2);
+
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'yashil',
                 'en' => 'green',
@@ -47,8 +49,7 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([//5
-            'attribute_id' => 1,
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'Oq',
                 'en' => 'White',
@@ -56,8 +57,9 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([ //6
-            'attribute_id' => 3,
+        $attribute = Attribute::find(3);
+
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'MDF',
                 'en' => 'MDF',
@@ -66,8 +68,7 @@ class ValueSeeder extends Seeder
         ]);
 
 
-        Value::create([
-            'attribute_id' => 3,
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'L_MDF',
                 'en' => 'L_MDF',
@@ -75,8 +76,7 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([ //8
-            'attribute_id' => 3,
+        $attribute->values()->create([
             'name' => [
                 'uz' => 'TAXTA',
                 'en' => 'BOARD',
@@ -84,8 +84,9 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([//9
-            'attribute_id' => 1,
+        $attribute = Attribute::find(1);
+
+        $attribute->values()->create([
             'name' => [
                 'uz' => '1mm, 64sm',
                 'en' => '1mm, 64sm',
@@ -93,8 +94,7 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([
-            'attribute_id' => 1,
+        $attribute->values()->create([
             'name' => [
                 'uz' => '2.5mm, 84sm',
                 'en' => '2.5mm, 84sm',
@@ -102,8 +102,7 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([
-            'attribute_id' => 1,
+        $attribute->values()->create([
             'name' => [
                 'uz' => '1.20mm, 74sm',
                 'en' => '1.20mm, 74sm',
@@ -111,8 +110,7 @@ class ValueSeeder extends Seeder
             ]
         ]);
 
-        Value::create([
-            'attribute_id' => 1,
+        $attribute->values()->create([
             'name' => [
                 'uz' => '2mm, 164mm',
                 'en' => '2mm, 164mm',
