@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DeliveryMethodController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PaymentCardTypeController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryProductController;
@@ -24,10 +25,11 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 Route::post('change-password', [AuthController::class, 'changePassword'])->middleware('auth:sanctum');
 Route::get('user', [AuthController::class, 'user'])->middleware('auth:sanctum');
 
+Route::get('products/{product}/related', [ProductController::class, 'related'])->middleware('auth:sanctum');
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'categories.products' => CategoryProductController::class,
-        'user-payment-cards' => UserPaymentCardsController::class,
         'delivery_methods' => DeliveryMethodController::class,
         'statuses' => StatusController::class,
         'statuses.orders' => StatusOrderController::class,
@@ -41,5 +43,7 @@ Route::middleware('auth:sanctum')->group(function () {
         'settings' => SettingController::class,
         'orders' => OrderController::class,
         'user-settings' => UserSettingController::class,
+        'payment-card-types' => PaymentCardTypeController::class,
+        'user-payment-cards' => UserPaymentCardsController::class,
     ]);
 });

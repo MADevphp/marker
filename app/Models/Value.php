@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Value extends Model
 {
@@ -14,7 +13,7 @@ class Value extends Model
 
     protected $fillable = ['name', 'attribute_id', 'product_id'];
 
-    protected $translatable = ['name'];
+    public array $translatable = ['name'];
 
     public function valueable(): MorphTo
     {

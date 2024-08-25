@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\PaymentTypeController;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,8 @@ class DatabaseSeeder extends Seeder
             PaymentTypeSeeder::class,
             UserAddressSeeder::class,
             StatusSeeder::class,
-            SettingSeeder::class
+            SettingSeeder::class,
+            PaymentCardTypeSeeder::class
         ]);
     }
 }

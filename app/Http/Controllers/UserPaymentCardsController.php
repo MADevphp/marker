@@ -2,63 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UserPaymentCardResource;
 use App\Models\UserPaymentCards;
 use App\Http\Requests\StoreUserPaymentCardsRequest;
 use App\Http\Requests\UpdateUserPaymentCardsRequest;
 
 class UserPaymentCardsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return $this->response(UserPaymentCardResource::collection(auth()->user()->paymentCards));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreUserPaymentCardsRequest $request)
     {
-        //
+        $payment = auth()->user()->paymentCards()->create([
+            "name" =>  encrypt($request->name),
+            "number" => encrypt($request->number),
+            "expiration_date" => encrypt($request->expiration_date),
+            "holder_name" => encrypt($request->holder_name),
+            "last_four_number" => encrypt(substr($request->number, -4)),
+            "payment_card_type_id" => $request->payment_card_type_id
+        ]);
+
+        return $this->success("to'lov amalga oshirildi");
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(UserPaymentCards $userPaymentCards)
     {
-        //
+        dd($userPaymentCards);
+        return UserPaymentCards::find($userPaymentCards);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(UserPaymentCards $userPaymentCards)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateUserPaymentCardsRequest $request, UserPaymentCards $userPaymentCards)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(UserPaymentCards $userPaymentCards)
     {
         //

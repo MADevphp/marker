@@ -11,6 +11,7 @@ class Setting extends Model
 {
     use HasFactory, HasTranslations;
 
+    protected $fillable = ['name', 'type'];
     protected $guarded = [];
 
     public array $translatable = ['name'];

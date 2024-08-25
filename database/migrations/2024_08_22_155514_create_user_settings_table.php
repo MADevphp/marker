@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('setting_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('value_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('value_id')->nullable()->constrained()->cascadeOnDelete();
             $table->boolean('switch')->nullable()->default(true);
             $table->timestamps();
         });
