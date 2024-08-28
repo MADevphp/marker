@@ -11,6 +11,7 @@ class Role extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    protected $hidden = ['guard_name', 'pivot'];
 
     public function users(): BelongsToMany
     {

@@ -6,7 +6,6 @@ use App\Models\UserAddress;
 use App\Http\Requests\StoreUserAddressRequest;
 use App\Http\Requests\UpdateUserAddressRequest;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Collection;
 
 class UserAddressController extends Controller
 {

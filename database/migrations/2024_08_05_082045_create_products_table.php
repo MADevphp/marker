@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->integer('price');
             $table->text('description');
+            $table->integer('how_much_sold')->default(0);
+            $table->integer('views')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

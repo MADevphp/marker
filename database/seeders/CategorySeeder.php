@@ -13,12 +13,57 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
+        $category = Category::create([
             'name' => [
                 'uz' => 'Eshik',
                 'ru' => 'Дверь'
             ]
         ]);
+
+            $category->childCategories()->create([
+                'name' => [
+                    'uz' => 'akfa',
+                    'ru' => 'акфа'
+                ]
+            ]);
+
+            $category->childCategories()->create([
+                'name' => [
+                    'uz' => 'alutex',
+                    'ru' => 'алютех'
+                ]
+            ]);
+
+            $childCategory = $category->childCategories()->create([
+                'name' => [
+                    'uz' => 'yogoch eshiklar',
+                    'ru' => 'ёгоч ешик'
+                ]
+            ]);
+
+                $childCategory->childCategories()->create([
+                    'name' => [
+                        'uz' => 'tol eshik',
+                        'ru' => 'тол ешик'
+                    ]
+                ]);
+
+                $childCategory->childCategories()->create([
+                    'name' => [
+                        'uz' => 'yongoq eshik',
+                        'ru' => 'ёнгок ешик'
+                    ]
+                ]);
+
+                $childCategory->childCategories()->create([
+                    'name' => [
+                        'uz' => 'terak eshik',
+                        'ru' => 'терак ешик'
+                    ]
+                ]);
+
+
+
 
         Category::create([
             'name' => [
@@ -27,12 +72,30 @@ class CategorySeeder extends Seeder
             ]
         ]);
 
-        Category::create([
+        $kresloCategory = Category::create([
             'name' => [
                 'uz' => 'kreslo',
                 'ru' => 'Кресло'
             ]
         ]);
+
+            $kresloCategory->childCategories()->create([
+                'name' => [
+                    'uz' => 'Gaming',
+                    'ru' => 'Геминг'
+                ]
+            ]);
+
+            $kresloCategory->childCategories()->create([
+                'name' => [
+                    'uz' => 'Offis',
+                    'ru' => 'Оффис'
+                ]
+            ]);
+
+
+
+
 
         Category::create([
             'name' => [

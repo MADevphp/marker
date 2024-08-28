@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\DeliveryMethodController;
 use App\Http\Controllers\FavoritesController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PaymentCardTypeController;
 use App\Http\Controllers\PaymentTypeController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryProductController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SettingController;
@@ -46,4 +47,9 @@ Route::middleware('auth:sanctum')->group(function () {
         'payment-card-types' => PaymentCardTypeController::class,
         'user-payment-cards' => UserPaymentCardsController::class,
     ]);
+});
+
+
+Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {//'can:create:post'
+    Route::apiResource('orders', AdminOrderController::class);
 });

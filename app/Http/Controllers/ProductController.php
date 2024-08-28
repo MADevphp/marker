@@ -11,7 +11,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return  ProductResource::collection(Product::cursorPaginate(10));
+        return ProductResource::collection(Product::cursorPaginate(10));
     }
 
     public function show($id)
@@ -32,5 +32,18 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function related(Product $product)
+    {
+        return $this->response(
+            ProductResource::collection(
+                Product::query()
+                    ->where('category_id', $product->category_id)
+                    ->orderBy('how_much_sold')
+                    ->limit(15)
+                    ->get()
+            )
+        );
     }
 }

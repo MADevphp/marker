@@ -10,7 +10,9 @@ use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Product;
 use App\Models\Stock;
 use App\Models\UserAddress;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -27,6 +29,8 @@ class OrderController extends Controller
 
     public function store(StoreOrderRequest $request): JsonResponse
     {
+        $this->authorize('create', Order::class);
+
         $sum = 0;
         $products = [];
         $notFoUndProducts = [];
@@ -84,6 +88,8 @@ class OrderController extends Controller
 
     public function show(Order $order): JsonResponse
     {
+        $this->authorize('view', $order);
+
         return $this->response(new OrderResource($order));
     }
 
@@ -95,6 +101,9 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        //
+        $this->authorize('delete', $order);
+        $order->delete();
+
+        return $this->response('order deleted');
     }
 }

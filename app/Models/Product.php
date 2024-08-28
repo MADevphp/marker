@@ -19,6 +19,8 @@ class Product extends Model
         'name',
         'price',
         'description',
+        'how_much_sold',
+        'views'
     ];
 
     protected $translatable = ['name', 'description'];
