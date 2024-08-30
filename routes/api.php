@@ -53,3 +53,10 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('admin')->middleware(['auth:sanctum', 'admin'])->group(function () {//'can:create:post'
     Route::apiResource('orders', AdminOrderController::class);
 });
+
+use App\Http\Controllers\ChatController;
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/messages/{recipient_id}', [ChatController::class, 'fetchMessages']);
+    Route::post('/messages', [ChatController::class, 'sendMessage']);
+});
