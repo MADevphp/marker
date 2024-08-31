@@ -17,20 +17,24 @@ class AuthController extends Controller
     {
         $user = User::where('email', $request->email)->first();
 
-        if (!$user || ! Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
-        return $this->success(data:[
-            'token' => $user->createToken($request->email)->plainTextToken,
+        return response()->json([
+            'token' => $user->createToken($request->email)->plainTextToken
         ]);
+
+        //return  success('token' => $user->createToken($request->email)->plainTextToken,);
     }
+
     public function logout(Request $request)
     {
 
     }
+
     public function register(Request $request)
     {
 
