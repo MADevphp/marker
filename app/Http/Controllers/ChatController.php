@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\MessageSent;
+use App\Http\Resources\ChatResource;
 use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,15 +12,11 @@ class ChatController extends Controller
 {
     public function fetchMessages($recipient_id)
     {
-        $messages = Message::where(function($query) use ($recipient_id) {
-            $query->where('user_id', Auth::id())
-                ->where('recipient_id', $recipient_id);
-        })->orWhere(function($query) use ($recipient_id) {
-            $query->where('user_id', $recipient_id)
-                ->where('recipient_id', Auth::id());
-        })->get();
-
-        return response()->json($messages);
+        return $this->response(ChatResource::collection(auth()
+            ->user()
+            ->chats()
+            ->where('recipient_id', $recipient_id)
+            ->get()));
     }
 
     public function sendMessage(Request $request)

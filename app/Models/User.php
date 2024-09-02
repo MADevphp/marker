@@ -81,6 +81,10 @@ class User extends Authenticatable
         return $this->hasMany(UserPaymentCards::class);
     }
 
+    public  function chats(): HasMany
+    {
+        return $this->hasMany(Message::class);
+    }
     public function photos(): MorphMany
     {
         return $this->morphMany(Photo::class, 'photoable');

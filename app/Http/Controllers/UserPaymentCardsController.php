@@ -30,7 +30,6 @@ class UserPaymentCardsController extends Controller
 
     public function show(UserPaymentCards $userPaymentCards)
     {
-        dd($userPaymentCards);
         return UserPaymentCards::find($userPaymentCards);
     }
 
